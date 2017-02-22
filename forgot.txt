@@ -1,0 +1,17 @@
+#Your handy guide to commands you forgot
+
+rsync -vr --delete source dest
+#verbose, recursive, delete files in destination that aren't in source
+
+mount -o uid=kyle device mountpoint
+
+tar xfz
+#untar .tar.bz
+
+
+flac2mp3
+#creates a .mp3 version of all .flac files in the directory
+
+vnc4server -depth 24 -geometry 1920x1080
+vnc4server -kill :1
+fc -ln -1 #recall last command.  useful for echoing into this file

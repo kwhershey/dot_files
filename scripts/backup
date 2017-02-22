@@ -1,0 +1,18 @@
+START=$(date +%s)
+rsync -vry --delete-after --progress --size-only /media/storage/iso\ files/ /media/external/iso\ files/
+rsync -vry --delete-after --progress --size-only /media/storage/Music/ /media/external/Music/
+rsync -vry --delete-after --progress --size-only /media/storage/Pictures/ /media/external/pictures
+rsync -vry --delete-after --progress --size-only /media/storage/TV/ /media/external/TV/
+rsync -vry --delete-after --progress --size-only /media/storage/movies/ /media/external/movies/
+rsync -vry --delete-after --progress /etc /media/external/arch_backup/
+rsync -vry --delete-after --progress /home/kyle/bin /media/external/arch_backup/kyle/
+rsync -vry --delete-after --progress /home/kyle/.bash_profile /media/external/arch_backup/kyle/
+rsync -vry --delete-after --progress /home/kyle/.bashrc /media/external/arch_backup/kyle/
+rsync -vry --delete-after --progress /home/kyle/.minecraft /media/external/arch_backup/kyle/
+rsync -vry --delete-after --progress /home/kyle/.xinitrc /media/external/arch_backup/kyle/
+rsync -vry --delete-after --progress /home/kyle/.xmonad /media/external/arch_backup/kyle/
+rsync -vry --delete-after --progress /home/kyle/.vimrc /media/external/arch_backup/kyle/
+END=$(date +%s)
+DIFF=$(($END - $START))
+echo "Files in sync."
+echo "Total Sync time: $(($DIFF/60)) minutes and $(($DIFF % 60)) seconds"

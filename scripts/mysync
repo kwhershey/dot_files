@@ -1,0 +1,63 @@
+if [ $# -lt 1 ]; then
+	echo not enough arguments
+else
+	#handles help and errors
+	if [ $# -eq 1 ]; then
+		if [ "$1" == "help" ]; then
+			echo piSync [help/push/pull] [music/movies/tv/documents/pics/isos]
+			echo help : Display this help menu 
+		else
+			echo not a valid command.  See "piSync help"
+		fi
+	fi
+	if [ $# -gt 2 ]; then
+		echo too many arguments.  See "piSync help"
+	fi
+	#the actual syncing
+	if [ $# -eq 2 ]; then
+		if [ "$1" == "push" ]; then
+			if [ "$2" == "music" ] || [ "$2" == "all" ]; then
+				echo push music
+				rsync -vry --progress --size-only /media/storage/Music/ kyle@doris.dnsdynamic.net:/media/external/Music/
+			fi
+			if [ "$2" == "movies" ] || [ "$2" == "all" ]; then
+				echo push movies 
+				rsync -vry --progress --size-only /media/storage/movies/ kyle@doris.dnsdynamic.net:/media/external/movies/
+			fi
+			if [ "$2" == "tv" ] || [ "$2" == "all" ]; then
+				echo push tv 
+				rsync -vry --progress --size-only /media/storage/TV/ kyle@doris.dnsdynamic.net:/media/external/TV/
+			fi
+			if [ "$2" == "pics" ] || [ "$2" == "all" ]; then
+				echo push pics
+				rsync -vry --progress --size-only /media/storage/Pictures/ kyle@doris.dnsdynamic.net:/media/external/pictures
+			fi
+			if [ "$2" == "isos" ] || [ "$2" == "all" ]; then
+				echo push isos 
+				rsync -vry --progress --size-only /media/storage/iso\ files/ kyle@doris.dnsdynamic.net:'/media/external/iso\ files/'
+			fi
+		fi
+		if [ "$1" == "pull" ]; then
+			if [ "$2" == "music" ] || [ "$2" == "all" ]; then
+				echo pull music
+				rsync -vry --progress --size-only kyle@192.168.1.11:/media/external/Music/ /mnt/array/music/ 		
+			fi
+			if [ "$2" == "movies" ] || [ "$2" == "all" ]; then
+				echo pull movies 
+				rsync -vry --progress --size-only kyle@192.168.1.11:/media/external/movies/ /mnt/array/movies/
+			fi
+			if [ "$2" == "tv" ] || [ "$2" == "all" ]; then
+				echo pull tv 
+				rsync -vry --progress --size-only kyle@192.168.1.11:/media/external/TV/ /mnt/array/TV/
+			fi
+			if [ "$2" == "pics" ] || [ "$2" == "all" ]; then
+				echo pull pics
+				rsync -vry --progress --size-only kyle@doris.dnsdynamic.net:/media/external/pictures /media/storage/Pictures/
+			fi
+			if [ "$2" == "isos" ] || [ "$2" == "all" ]; then
+				echo pull isos 
+				rsync -vry --progress --size-only kyle@doris.dnsdynamic.net:'/media/external/iso\ files/' /media/storage/iso\ files/
+			fi
+		fi
+	fi
+fi

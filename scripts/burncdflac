@@ -1,0 +1,8 @@
+if [ -e *.flac ]
+then
+	for i in *.flac; do flac -d "$i" "'basename "$i" .flac'" .wav;done
+else
+	for i in *.mp3; do lame --decode "$i" "'basename "$i" .mp3'" .wav;done
+fi
+wodim -v -pad speed=1 dev=/dev/cdrom -dao -swab *.wav
+rm *.wav
