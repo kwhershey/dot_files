@@ -8,37 +8,22 @@
 [ -n "$XTERM_VERSION" ] && transset-df -a .75>/dev/null
 
 alias ls='ls -lh --color=auto'
-alias ptex='pdflatex'
-alias pacman='sudo pacman'
-alias doris='ssh kyle@doris.dnsdynamic.net'
-alias svim='sudo vim'
-alias restart='sudo systemctl restart'
 alias suod='sudo'
 
-pdf() {
-	pdflatex "$1";
-	rm *.aux;
-	rm *.log;
-}
 
 
 # PS1='[\u@\h \W]\$ '
-export PS1="\[\e[0;32m\][\u@\h \W]\$ \[\e[m\]"
+#export PS1="\[\e[0;32m\][\u@\h \W]\$ \[\e[m\]"
+PS1='\[\033[00;36m\]\u\[\033[00;33m\]@\[\033[00;36m\]\h\[\033[01;30m\]:\[\033[01;32m\]\w\[\033[01;37m\]$ \[\033[00m\]'
+
+export PATH="$PATH:/usr/local/bin/anaconda2/bin"
+
+alias python='/usr/local/bin/anaconda2/bin/python'
 
 #searches through previous commands matching currently entered text
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-shopt -s autocd #cd if a directory is entered
-alias c='clear'
-
-
-export PERL_LOCAL_LIB_ROOT="/home/kyle/perl5";
-export PERL_MB_OPT="--install_base /home/kyle/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/kyle/perl5";
-export PERL5LIB="/home/kyle/perl5/lib/perl5/x86_64-linux-thread-multi:/home/kyle/perl5/lib/perl5";
-export PATH="/home/kyle/perl5/bin:$PATH";
-export CDPATH='/media'
 if [ -f /etc/bash_completion ]; then
 	    . /etc/bash_completion
 fi
@@ -68,7 +53,6 @@ alias grep='grep --color=tty -d skip'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias np='nano PKGBUILD'
 
 # ex - archive extractor
 # usage: ex <file>
@@ -94,3 +78,5 @@ ex ()
   fi
 }
 export NCURSES_NO_UTF8_ACS=1
+
+#[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
