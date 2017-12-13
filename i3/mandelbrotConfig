@@ -1,9 +1,8 @@
-# Should you change your keyboard layout some time, delete
-# this file and re-run i3-config-wizard(1).
+new_window 1pixel
 set $mod Mod4
 
 #font pango:monospace 8
-#font pango:System San Francisco Display Regular 9
+font pango:System San Francisco Display Regular 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -15,7 +14,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym Mod1+space exec dmenu_run
 
 # change focus
 bindsym $mod+h focus left
@@ -102,6 +101,9 @@ mode "resize" {
 
 hide_edge_borders both
 
+# class         border backgr. text     indicator child_border
+client.focused #f6f442 #28557 #ffffff #2e9ef4 #28557
+
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -113,6 +115,9 @@ bar {
 
 bindsym $mod+e exec thunar
 
-exec_always compton
+#exec_always compton
+exec_always xrandr --output HDMI-0 --primary
+#exec_always owncloud
 
-exec_always feh --bg-scale ~/Pictures/backgrounds/chicago.jpg
+
+exec_always feh --bg-scale ~/pictures/mandelbrotSet.jpg
