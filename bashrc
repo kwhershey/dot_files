@@ -5,46 +5,23 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[ -n "$XTERM_VERSION" ] && transset-df -a .75>/dev/null
-
-alias ls='ls -lh --color=auto'
-alias suod='sudo'
-
-
-
+# APPEARANCE
+# Shell Prompt
+# This sets default.  Overridden in .extend.bashrc for host by host config
 #export PS1="\[\e[0;32m\][\u@\h \W]\$ \[\e[m\]"
 PS1='\[\033[00;36m\]\u\[\033[00;33m\]@\[\033[00;36m\]\h\[\033[01;30m\]:\[\033[01;32m\]\w\[\033[01;37m\]$ \[\033[00m\]'
+# Transparency for Xterm
+[ -n "$XTERM_VERSION" ] && transset-df -a .75>/dev/null
+# extends bashrc
+[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 
+# ANACONDA
+# add anaconda programs to path
 export PATH="$PATH:/usr/local/bin/anaconda2/bin"
-
+# override system python with anaconda python
 alias python='/usr/local/bin/anaconda2/bin/python'
 
-#searches through previous commands matching currently entered text
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-
-if [ -f /etc/bash_completion ]; then
-	    . /etc/bash_completion
-fi
-
-xhost +local:root > /dev/null 2>&1
-
-complete -cf sudo
-
-shopt -s cdspell
-shopt -s checkwinsize
-shopt -s cmdhist
-shopt -s dotglob
-shopt -s expand_aliases
-shopt -s extglob
-shopt -s histappend
-shopt -s hostcomplete
-shopt -s nocaseglob
-
-export HISTSIZE=10000
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=ignoreboth
-
+# ALIASES
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
@@ -52,6 +29,44 @@ alias grep='grep --color=tty -d skip'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
+alias suod='sudo'
+
+# COMPLETION
+# Allows bash completion for sudo
+complete -cf sudo
+# try to correct spelling mistakes
+shopt -s cdspell
+# check the window size for changes
+shopt -s checkwinsize
+# save multiline commands as one history entry
+shopt -s cmdhist
+# allow file expansion of dot files
+shopt -s dotglob
+# command expansion of aliases
+shopt -s expand_aliases
+# enable pattern matching
+shopt -s extglob
+# append history rather than overwrite
+shopt -s histappend
+# when @ in line, try to complete host
+shopt -s hostcomplete
+# try to expand regardless of case sensitivity
+shopt -s nocaseglob
+# enable nice bash completion of things like apt-get
+if [ -f /etc/bash_completion ]; then
+	    . /etc/bash_completion
+fi
+
+# HISTORY
+#searches through previous commands matching currently entered text
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+# Bash history control
+export HISTSIZE=10000
+export HISTFILESIZE=${HISTSIZE}
+export HISTCONTROL=ignoreboth
+
+# FUNCTIONS
 
 # ex - archive extractor
 # usage: ex <file>
@@ -76,6 +91,9 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-export NCURSES_NO_UTF8_ACS=1
 
-#[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
+# RANDOM
+# Fixes Putty displaying ncurses programs weird
+export NCURSES_NO_UTF8_ACS=1
+# Some control over running X applications as root
+xhost +local:root > /dev/null 2>&1
