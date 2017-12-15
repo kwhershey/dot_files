@@ -1,0 +1,28 @@
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:System San Francisco Display Regular 9
+
+# start dmenu
+bindsym Mod1+space exec dmenu_run
+
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# class         border backgr. text     indicator child_border
+client.focused #f6f442 #28557 #ffffff #2e9ef4 #28557
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+        tray_output primary
+}
+
+bindsym $mod+e exec thunar
+
+#exec_always compton
+exec_always xrandr --output HDMI-0 --primary
+#exec_always owncloud
+
+exec_always feh --bg-scale ~/pictures/mandelbrotSet.jpg
