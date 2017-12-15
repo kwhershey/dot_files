@@ -176,8 +176,6 @@ bar {
 
 bindsym $mod+e exec caja
 
-#exec spotify
-#exec_always compton
 
 #for_window [class="Spotify"] move to workspace $ws0
 
