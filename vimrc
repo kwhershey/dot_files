@@ -12,3 +12,4 @@
 :set t_vb=
 ":set spell spelllang=en_us
 :set mouse=a
+:colo slate

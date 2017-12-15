@@ -31,6 +31,9 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias suod='sudo'
 
+# DEFAULTS
+export EDITOR='vim'
+
 # COMPLETION
 # Allows bash completion for sudo
 complete -cf sudo
