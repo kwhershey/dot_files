@@ -1,0 +1,1 @@
+alias conda="sudo /usr/local/bin/anaconda3/bin/conda"
