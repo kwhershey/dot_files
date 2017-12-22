@@ -12,8 +12,6 @@
 PS1='\[\033[00;36m\]\u\[\033[00;33m\]@\[\033[00;36m\]\h\[\033[01;30m\]:\[\033[01;32m\]\w\[\033[01;37m\]$ \[\033[00m\]'
 # Transparency for Xterm
 [ -n "$XTERM_VERSION" ] && transset-df -a .75>/dev/null
-# extends bashrc
-[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 
 # ANACONDA
 # add anaconda programs to path
@@ -100,3 +98,6 @@ ex ()
 export NCURSES_NO_UTF8_ACS=1
 # Some control over running X applications as root
 xhost +local:root > /dev/null 2>&1
+
+# extends bashrc
+[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc

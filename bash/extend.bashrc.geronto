@@ -1,0 +1,5 @@
+# ANACONDA
+# add anaconda programs to path
+export PATH="$PATH:/usr/local/bin/anaconda3/bin"
+# override system python with anaconda python
+alias python='/usr/local/bin/anaconda3/bin/python'
