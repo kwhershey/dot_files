@@ -13,3 +13,8 @@
 ":set spell spelllang=en_us
 :set mouse=a
 :colo slate
+
+filetype plugin on
+set shellslash
+set grepprg=grep\ -nH\ $*
+set iskeyword+=:
