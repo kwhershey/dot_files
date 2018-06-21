@@ -14,6 +14,13 @@
 :set mouse=a
 :colo slate
 
+nnoremap <Tab> <Esc>
+vnoremap <Tab> <Esc>gV
+onoremap <Tab> <Esc>
+cnoremap <Tab> <C-C><Esc>
+inoremap <Tab> <Esc>`^
+"inoremap <Leader><Tab> <Tab>
+
 filetype plugin on
 set shellslash
 set grepprg=grep\ -nH\ $*
